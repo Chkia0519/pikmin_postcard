@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link href="{{ url_for('static',filename='css/index.css') }}" rel = "stylesheet">
+<link href="{{ url_for('static',filename='css/index_style2.css') }}" rel = "stylesheet">
+<html>
+
+<head>
+  <title>圖片上傳與地點標記</title>
+  <meta charset="utf-8" />
+  
+  <style>
+    img { max-height: 100px; }
+  </style>
+</head>
+
+<body>
+
+  <div id="banner">
+   <div class="leftbanner">
+      <a href="/index"><img src='/static/images/logo.png'></a>
+    </div>
+  </div>
+
+    <div id="menu" class='navbar'>
+      <ul>
+        <li><a href="/index">首頁</a></li>
+        <li><a href="/updata">已上傳列表</a></li>
+      </ul>
+    </div>
+
+<div class="container mt-4">
+
+  <h2 class="title">上傳圖片並輸入地點</h2>
+
+  <form action="" method="POST" enctype="multipart/form-data">
+
+  <div class='mb-3'>
+      <input class="form-control" type="file" name="image" required>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">明信片類型:</label>
+      <select name='postcard_type' class="form-select">
+        <option value="bef">美片</option>
+        <option value="funny">趣片</option>
+        <option value="odd">怪片</option>
+      </select>
+    </div>
+
+  <div class="col-md-4 mb-3">
+    <label class="form-label">取得方式:</label>
+    <select name='get_type' class="form-select">
+      <option value="mushroom">打菇</option>
+      <option value="flower">花</option>
+      <option value="usefind">探測器</option>
+    </select>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <label class="form-label">哪裡獲得的:</label>
+    <select name='where' id="whereSelect" class="form-select">
+      <option value="me">自己</option>
+      <option value="friend">朋友</option>
+      <option value="net">網路上看到</option>
+    </select>
+  </div>
+</div>
+
+    <br>
+    <div id="locationFields">
+      <div class='mb-3'>
+        <label class="form-label" for="lat">緯度:</label>
+        <input type="text" name="latitude" id="lat" class="form-control" placeholder="輸入緯度">
+      </div>
+      <div class='mb-3'>
+      <label class="form-label" for="lon">經度:</label>
+      <input type="text" name="longitude" id="lon" class="form-control" placeholder="輸入經度">
+      </div>
+      <div class='mb-3'>
+      <label class="form-label" for="address">地址:</label>
+      <input type="text" name="address" id="address" class="form-control" placeholder="輸入地址">
+    </div>
+    </div>  
+    <button type="submit" class="btn btn-primary w-100">上傳</button>
+  </form>
+
+</div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <div id=map></div>
+
+  <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+
+</body>
+</html>
