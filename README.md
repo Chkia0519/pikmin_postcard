@@ -1,1 +1,1 @@
-# pikmin_postcord
+# pikmin_postcard
