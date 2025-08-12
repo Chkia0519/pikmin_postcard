@@ -1,0 +1,38 @@
+.navbar {
+    background: linear-gradient(90deg, #006000, #A6FFA6);
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    align-items: center;     /* 垂直置中 */
+    height: 60px;            /* 固定高度 */
+    border-radius: 8px;
+    width: 80%;
+    margin: auto;            /* 讓區塊在頁面置中 */
+    gap: 50px;               /* 選單項目間距 */
+    padding: 0;              /* 移除 padding */
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+
+}
+.navbar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    background: white;
+    transition: width 0.3s ease;
+}
+.navbar a:hover {
+    color: #ffd700; /* Hover 金色 */
+}
+.navbar a:hover::after {
+    width: 100%;
+}

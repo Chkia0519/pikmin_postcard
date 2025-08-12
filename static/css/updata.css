@@ -1,0 +1,80 @@
+body{
+	margin: 0; /*外距*/
+}
+
+.leftbanner{
+	float: left;
+	margin-left: 5%;
+	width:10%;
+}
+
+#banner{
+	height : 100px;
+}
+
+#menu{
+	margin-left:10% ;
+	width: 80%;
+    height: 80px;
+	background-color: #ff0000;
+
+}
+
+#menu a{
+	color:#ffffff;
+	text-decoration: none;/*不要有底線 */
+	font-weight: bold;
+}
+
+#menu ul{
+	line-height: 80px; /*高度若是跟所在高度相同 字會置中*/
+}
+
+#menu li{
+	float: left;
+	padding-left: 2em;
+	padding-right: 2em;
+	list-style: none;
+	font-size: 24px;
+	color: #ffffff;
+}
+
+#map{
+	left: 15%;
+	width: 70%;
+	height: 800px;
+	margin-top: 10px;
+	}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url("/static/images/pikmin.png") no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* 讓它在最底層 */
+}
+
+.title {
+  background-color: lightyellow;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.form-label{
+  background-color: lightyellow;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.upload-list{
+	background-color: rgba(242, 255, 226, 0.6); /* 黃色，透明度 0.3 */
+	border-radius: 8px;
+    width: 80%;
+    margin-left: 10%;
+}

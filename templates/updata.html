@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>圖片上傳與地點標記</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link href="{{ url_for('static',filename='css/updata.css') }}" rel = "stylesheet">
+  <link href="{{ url_for('static',filename='css/index_style2.css') }}" rel = "stylesheet">
+  <style>
+    #map { height: 300px; margin-top: 10px; }
+    img { max-height: 100px; }
+  </style>
+</head>
+
+<body>
+
+  <div id="banner"></div>
+
+    <div id="menu" class='navbar' >
+      <ul>
+        <li><a href="/index">首頁</a></li>
+        <li><a href="/updata">已上傳列表</a></li>
+      </ul>
+    </div>
+
+<div class="upload-list">
+  <h3>已上傳圖片列表：</h3>
+  <ul>
+    {% for item in uploads %}
+      <li>
+        <img src="{{ url_for('uploaded_file', filename=item[1]) }}">
+        {{ item[2] }}{{ item[3] or ' 無地址 ' }} ({{ item[4] }}, {{ item[5] }})
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([23.5, 121], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    map.on('click', function(e) {
+      document.getElementById('lat').value = e.latlng.lat.toFixed(6);
+      document.getElementById('lon').value = e.latlng.lng.toFixed(6);
+    });
+
+    {% for item in uploads %}
+      {% if item[4] and item[5] %}
+        L.marker([{{ item[4] }}, {{ item[5] }}]).addTo(map)
+          .bindPopup("<img src='{{ url_for('uploaded_file', filename=item[1]) }}' style='width:100px'><br>{{ item[2] or '' }}");
+      {% endif %}
+    {% endfor %}
+  </script>
+</body>
+
+</html>
