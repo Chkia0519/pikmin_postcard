@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os, sqlite3
 from werkzeug.utils import secure_filename #將文件名字自動轉換為可適用字符
 import requests
+from flask_cors import CORS
+CORS(app)
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
