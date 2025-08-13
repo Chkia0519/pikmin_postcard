@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<link href="{{ url_for('static',filename='css/index.css') }}" rel = "stylesheet">
-<link href="{{ url_for('static',filename='css/index_style2.css') }}" rel = "stylesheet">
+<link href="./static/css/index.css" rel = "stylesheet">
+<link href="./static/css/index_style2.css" rel = "stylesheet">
 <html>
 
 <head>
@@ -18,7 +18,7 @@
 
   <div id="banner">
    <div class="leftbanner">
-      <a href="/index"><img src='/static/images/logo.png'></a>
+      <a href="/index"><img src='.//static/images/logo.png'></a>
     </div>
   </div>
 
@@ -33,7 +33,7 @@
 
   <h2 class="title">上傳圖片並輸入地點</h2>
 
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="https://pikmin-postcard.onrender.com/upload" method="POST" enctype="multipart/form-data">
 
   <div class='mb-3'>
       <input class="form-control" type="file" name="image" required>
@@ -93,7 +93,7 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <div id=map></div>
 
-  <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+ <script src="./static/js/index.js"></script>
 
 </body>
 </html>
