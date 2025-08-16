@@ -3,25 +3,32 @@ import os, sqlite3
 from werkzeug.utils import secure_filename #將文件名字自動轉換為可適用字符
 import requests
 from flask_cors import CORS
+import psycopg2
 
 app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['DATABASE'] = 'database2.db'
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL)
+cur = conn.cursor()
 # 初始化資料庫
 def init_db():
-    with sqlite3.connect(app.config['DATABASE']) as conn:
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS uploads (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                filename TEXT NOT NULL,
-                address TEXT,
-                whereg TEXT,
-                latitude REAL,
-                longitude REAL
-            )
-        """)
+    # 連線到 Neon
+    with psycopg2.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS uploads (
+                    id SERIAL PRIMARY KEY,
+                    filename TEXT NOT NULL,
+                    address TEXT,
+                    whereg TEXT,
+                    latitude DOUBLE PRECISION,
+                    longitude DOUBLE PRECISION
+                )
+            """)
+        conn.commit()  # PostgreSQL 要 commit
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
