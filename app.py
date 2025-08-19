@@ -30,11 +30,8 @@ def init_db():
             """)
         conn.commit()  # PostgreSQL 要 commit
 
-@app.route('/')
-def index():
-    return render_template('index.html')
     
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         file = request.files['image'] #
