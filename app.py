@@ -30,6 +30,10 @@ def init_db():
             """)
         conn.commit()  # PostgreSQL 要 commit
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+    
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
